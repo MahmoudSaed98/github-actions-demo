@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "github-actions-demo.ConsoleApp", "github-actions-demo.ConsoleApp\github-actions-demo.ConsoleApp.csproj", "{E976E48A-457A-4339-A589-F0CB0E9780F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2127CF5B-B4B2-49B0-B206-57F6CA80F1E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DB9519F0-A6CB-4BAA-8402-F0549388CFCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{EFDB881A-B5A3-4A75-8FE2-10248ACA01A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E976E48A-457A-4339-A589-F0CB0E9780F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E976E48A-457A-4339-A589-F0CB0E9780F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E976E48A-457A-4339-A589-F0CB0E9780F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E976E48A-457A-4339-A589-F0CB0E9780F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E976E48A-457A-4339-A589-F0CB0E9780F8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DB9519F0-A6CB-4BAA-8402-F0549388CFCF} = {2127CF5B-B4B2-49B0-B206-57F6CA80F1E2}
+		{EFDB881A-B5A3-4A75-8FE2-10248ACA01A2} = {2127CF5B-B4B2-49B0-B206-57F6CA80F1E2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CD3EA60-8D3F-4D59-9E00-02F5370EB55A}
+	EndGlobalSection
+EndGlobal

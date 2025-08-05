@@ -2,7 +2,11 @@
 
 namespace github_actions_demo.ConsoleApp.Services.Interfaces;
 
-internal interface IUserService
+public interface IUserService
 {
-    void CreateUser(RegisterUserDto userDto);
+    Task<Guid> CreateUserAsync(RegisterUserDto userDto);
+    Task<UserResponse?> GetByUsernameAsync(string userName);
+    Task<UserResponse?> GetByEmailAsync(string email);
+    Task<bool> DeleteAsync(Guid id);
+    Task<IEnumerable<UserResponse>> GetAllAsync();
 }

@@ -4,8 +4,11 @@ namespace github_actions_demo.ConsoleApp.Repositories;
 
 public interface IUserRepository
 {
-    void Insert(User user);
-    void Update(User user);
-    void Delete(User user);
-    User? GetByUserName(string userName);
+    Task Insert(User user);
+    Task<bool> Delete(Guid id);
+    Task<User?> GetByUserName(string userName);
+    Task<User?> GetByEmailAsync(string email);
+    Task<bool> IsUsernameUnique(string userName);
+    Task<bool> IsEmailUnique(string email);
+    Task<IList<User>> GetAll();
 }

@@ -1,6 +1,6 @@
-﻿using github_actions_demo.ConsoleApp.Models;
+﻿using github_actions_demo.ConsoleApp.Core.Models;
 
-namespace github_actions_demo.ConsoleApp.Repositories;
+namespace github_actions_demo.ConsoleApp.Core.Repositories;
 
 public interface IUserRepository
 {

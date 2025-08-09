@@ -1,7 +1,7 @@
-﻿using github_actions_demo.ConsoleApp.Data.Repositories;
-using github_actions_demo.ConsoleApp.Models;
+﻿using github_actions_demo.ConsoleApp.Core.Models;
+using github_actions_demo.ConsoleApp.Infrastructure.Persistence;
 
-namespace github_actions_demo.tests.Repositories;
+namespace github_actions_demo.tests.Infrastructure.Persistence;
 
 public class InMemoryUserRepositoryTests
 {

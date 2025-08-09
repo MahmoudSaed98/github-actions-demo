@@ -1,14 +1,17 @@
-﻿using github_actions_demo.ConsoleApp.Contracts;
-using github_actions_demo.ConsoleApp.Models;
-using github_actions_demo.ConsoleApp.Repositories;
-using github_actions_demo.ConsoleApp.Services.Interfaces;
+﻿using github_actions_demo.ConsoleApp.Core.Contracts;
+using github_actions_demo.ConsoleApp.Core.Models;
+using github_actions_demo.ConsoleApp.Core.Repositories;
 
-namespace github_actions_demo.ConsoleApp.Services;
+namespace github_actions_demo.ConsoleApp.Core.Services;
 
 public class UserService(IUserRepository repository) : IUserService
 {
+    private IList<string> validationErrors = new List<string>();
+
     public async Task<Guid> CreateUserAsync(RegisterUserDto userDto)
     {
+
+        ValidateDto(userDto);
 
         var user = new User(userDto.UserName, userDto.Email);
 
@@ -27,8 +30,31 @@ public class UserService(IUserRepository repository) : IUserService
         return await Task.FromResult(user.Id);
     }
 
-    public async Task<UserResponse?> GetByUsernameAsync(string userName)
+    private void ValidateDto(RegisterUserDto userDto)
     {
+        if (string.IsNullOrWhiteSpace(userDto.UserName))
+        {
+            this.validationErrors.Add("Invalid Username.");
+        }
+
+        if (string.IsNullOrWhiteSpace(userDto.Email))
+        {
+            this.validationErrors.Add("Invalid Email.");
+        }
+
+        if (this.validationErrors.Any())
+        {
+            throw new Exceptions.ValidationException(this.validationErrors);
+        }
+    }
+
+    public async Task<UserResponse?> GetByUsernameAsync(string? userName)
+    {
+        if (string.IsNullOrWhiteSpace(userName))
+        {
+            throw new ArgumentException("Invalid username.");
+        }
+
         var user = await repository.GetByUserName(userName);
 
         return user is null ? null :
@@ -42,8 +68,13 @@ public class UserService(IUserRepository repository) : IUserService
         return isRemoved;
     }
 
-    public async Task<UserResponse?> GetByEmailAsync(string email)
+    public async Task<UserResponse?> GetByEmailAsync(string? email)
     {
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            throw new ArgumentException("Invalid email.");
+        }
+
         var user = await repository.GetByEmailAsync(email);
 
         return user is null ? null :

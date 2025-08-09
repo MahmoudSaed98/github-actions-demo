@@ -1,11 +1,11 @@
-﻿using github_actions_demo.ConsoleApp.Contracts;
-using github_actions_demo.ConsoleApp.Models;
-using github_actions_demo.ConsoleApp.Repositories;
-using github_actions_demo.ConsoleApp.Services;
-using github_actions_demo.ConsoleApp.Services.Interfaces;
+﻿using github_actions_demo.ConsoleApp.Core.Contracts;
+using github_actions_demo.ConsoleApp.Core.Exceptions;
+using github_actions_demo.ConsoleApp.Core.Models;
+using github_actions_demo.ConsoleApp.Core.Repositories;
+using github_actions_demo.ConsoleApp.Core.Services;
 using Moq;
 
-namespace github_actions_demo.tests.Services;
+namespace github_actions_demo.tests.Core.Services;
 
 public sealed class UserServiceTests
 {
@@ -73,6 +73,24 @@ public sealed class UserServiceTests
         await Assert.ThrowsAsync<Exception>(() => _userService.CreateUserAsync(userDto));
 
         _mockRepository.Verify(x => x.Insert(It.IsAny<User>()), Times.Never);
+    }
+
+    [Theory]
+    [InlineData("", "valid@email.com", "Invalid Username.")]
+    [InlineData(" ", "valid@email.com", "Invalid Username.")]
+    [InlineData("validuser", "", "Invalid Email.")]
+    [InlineData("validuser", " ", "Invalid Email.")]
+    public async Task CreateUserAsync_WithInvalidUserData_ShouldThrowValidationException(string username, string email, string expectedError)
+    {
+        //Arrange
+
+        var userDto = new RegisterUserDto(username, email);
+
+        //Act & Assert
+
+        var exception = await Assert.ThrowsAsync<ValidationException>(() => _userService.CreateUserAsync(userDto));
+
+        Assert.Contains(expectedError, exception.Errors);
     }
 
     [Fact]

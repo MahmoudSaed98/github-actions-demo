@@ -1,7 +1,7 @@
-﻿using github_actions_demo.ConsoleApp.Models;
-using github_actions_demo.ConsoleApp.Repositories;
+﻿using github_actions_demo.ConsoleApp.Core.Models;
+using github_actions_demo.ConsoleApp.Core.Repositories;
 
-namespace github_actions_demo.ConsoleApp.Data.Repositories;
+namespace github_actions_demo.ConsoleApp.Infrastructure.Persistence;
 
 public class InMemoryUserRepository : IUserRepository
 {
@@ -9,15 +9,15 @@ public class InMemoryUserRepository : IUserRepository
 
     public InMemoryUserRepository()
     {
-        this._users = new List<User>();
+        _users = new List<User>();
     }
     public async Task<bool> Delete(Guid id)
     {
-        var existingUser = this._users.FirstOrDefault(x => x.Id == id);
+        var existingUser = _users.FirstOrDefault(x => x.Id == id);
 
         if (existingUser != null)
         {
-            this._users.Remove(existingUser);
+            _users.Remove(existingUser);
 
             return await Task.FromResult(true);
         }
@@ -55,7 +55,7 @@ public class InMemoryUserRepository : IUserRepository
 
     public async Task<bool> IsEmailUnique(string email)
     {
-        bool result = !this._users.Any(x => x.Email == email);
+        bool result = !_users.Any(x => x.Email == email);
 
         return await Task.FromResult(result);
     }
@@ -63,7 +63,7 @@ public class InMemoryUserRepository : IUserRepository
     public async Task<bool> IsUsernameUnique(string userName)
     {
 
-        bool result = !this._users.Any(x => x.UserName == userName);
+        bool result = !_users.Any(x => x.UserName == userName);
 
         return await Task.FromResult(result);
     }

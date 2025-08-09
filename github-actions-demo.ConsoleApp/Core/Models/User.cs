@@ -1,4 +1,4 @@
-﻿namespace github_actions_demo.ConsoleApp.Models;
+﻿namespace github_actions_demo.ConsoleApp.Core.Models;
 
 public class User
 {

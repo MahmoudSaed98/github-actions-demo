@@ -43,7 +43,7 @@ jobs:
 
       - name: Publish for Windows
         run: >
-          dotnet publish ./src/github-actions-demo.ConsoleApp/github-actions-demo.ConsoleApp.csproj 
+          dotnet publish ./src/github-actions-demo/github-actions-demo.ConsoleApp.csproj 
           --configuration Release 
           --runtime win-x64 
           --output ./publish
